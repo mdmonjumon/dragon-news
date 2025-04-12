@@ -2,8 +2,7 @@ import moment from 'moment';
 import logoImg from '../assets/logo.png'
 
 const Header = () => {
-    const localTime = moment().format('dddd, MMMM, Do, YYYY')
-    console.log(localTime)
+    const localTime = moment().format('dddd, MMMM, Do, YYYY');
     return (
         <div className='my-7 space-y-3'>
             <img className='w-[300px] mx-auto' src={logoImg} alt="" />
