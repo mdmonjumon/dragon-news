@@ -10,15 +10,13 @@ const LeftNavbar = () => {
             .then(data => setCategory(data.data.news_category))
     }, [])
 
-    console.log(category)
-
     return (
         <div>
-            <h3 className='font-bold text-xl'>All Category</h3>
+            <h3 className='font-bold text-xl mb-5'>All Category</h3>
 
             <div className='flex flex-col'>
                 {
-                    category.map(newsCategory=> <NavLink key={newsCategory.category_id} className="btn text-lg rounded-lg py-7">{newsCategory.category_name}</NavLink>)
+                    category.map(newsCategory=> <NavLink to={`/category/${newsCategory.category_id}`} key={newsCategory.category_id} className="btn text-lg rounded-lg py-7">{newsCategory.category_name}</NavLink>)
                 }
             </div>
         </div>
