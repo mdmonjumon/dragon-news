@@ -1,17 +1,9 @@
 import { FaStar, FaEye } from "react-icons/fa";
 import { FiShare2 } from "react-icons/fi";
 import { BsBookmark } from "react-icons/bs";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
-    const [readMore, setReadMore] = useState(false)
-    const handleReadMore = () =>{
-
-        setReadMore(!readMore)
-
-    }
-
-
     return (
         <div className="card gap-4 w-full shadow-md mx-auto mt-5">
             <div className="flex items-center justify-between p-4 bg-[#F3F3F3] rounded-lg rounded-b-none">
@@ -47,16 +39,9 @@ const NewsCard = ({ news }) => {
             </figure>
 
             <div className="card-body gap-1 p-4">
-                <p className="text-sm text-gray-600">
-                    {
-                        readMore? news.details:news.details.slice(0, 180)
-                    }
+                <p className="text-sm text-gray-600">{news.details.slice(0, 180)}
                 </p>
-                <span onClick={handleReadMore} className="text-orange-500 font-semibold cursor-pointer">
-                    {
-                        readMore? 'Read Less':'Read More'
-                    }
-                </span>
+                <Link to={`/news/${news._id}`} className="text-orange-500 font-semibold cursor-pointer">Read More</Link>
 
                 <div className="divider"></div>
 
