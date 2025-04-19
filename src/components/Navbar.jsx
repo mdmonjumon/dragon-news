@@ -17,14 +17,17 @@ const Navbar = () => {
             <div className="flex items-center md:justify-end gap-2 md:w-full ">
 
                 {
-                    user && user.email ?
-                        <small>{user.email}</small>
+                    user && user.displayName && <small className="text-lg font-medium">{user?.displayName}</small>
+                }
+                {
+                    user && user.photoURL ?
+                        <img className="h-12 w-12 object-cover rounded-full" src={user?.photoURL} alt="" />
                         : <FaCircleUser className="text-5xl" />
                 }
 
                 {
                     user && user.email ?
-                        <button onClick={handleSignOut}  className="bg-[#403F3F] text-white font-semibold text-xl px-8 py-3 cursor-pointer">Logout</button>
+                        <button onClick={handleSignOut} className="bg-[#403F3F] text-white font-semibold text-xl px-8 py-3 cursor-pointer">Logout</button>
                         : <Link to='/auth/login' className="bg-[#403F3F] text-white font-semibold text-xl px-8 py-3">Login</Link>
                 }
             </div>

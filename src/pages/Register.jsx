@@ -1,24 +1,30 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-    const { signUpInWithEmail } = useContext(AuthContext);
+    const { signUpInWithEmail, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const handleRegister = (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
-        // const name = form.get('name');
+        const name = form.get('name');
+        const photo = form.get('photo');
         const email = form.get('email');
         const password = form.get('password');
 
         signUpInWithEmail(email, password)
-        .then(result=>{
-            console.log(result.user)
-        })
-        .catch(error=>{
-            console.log('error', error.message);
-        })
+            .then(() => {
+                
+                updateUserProfile({displayName:name, photoURL:photo})
+                .then(()=>{
+                    navigate('/')
+                })
+            })
+            .catch(() => {
+                
+            })
 
     };
 
@@ -30,7 +36,7 @@ const Register = () => {
                     <div className="card-body">
                         <fieldset className="fieldset">
                             <label className="fieldset-label">Name</label>
-                            <input type="text" name="name" className="input" placeholder="Email" />
+                            <input type="text" name="name" className="input" placeholder="Name" />
 
                             <label className="fieldset-label">Photo URL</label>
                             <input type="text" name="photo" className="input" placeholder="photo url" />
